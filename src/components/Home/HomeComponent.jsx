@@ -1,49 +1,38 @@
 import { LoadingButton } from "@mui/lab";
 import {
-  Typography,
   Button,
-  CircularProgress,
-  ButtonGroup,
-  Container,
-  Icon,
-  Input, IconButton,
+   TextField,
 } from "@mui/material";
 import React, { useState } from "react";
-import  { KeyboardArrowLeft, KeyboardArrowRight, UploadFile, PhotoCamera } from '@mui/icons-material'
+import  { KeyboardArrowLeft } from '@mui/icons-material'
 
 import { makeStyles } from '@mui/styles'
 
+import { useForm } from 'react-hook-form';
 
-const useStyles = makeStyles({
-  myClass:{
-    background:"linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-    fontSize:'90px !important',
-    '& :hover':{
-      backgroundColor:'blue'
-    }
-  }
-})
 
 const HomeComponent = () => {
-  const classes  = useStyles();
 
-  console.log(classes)
+ const { register, handleSubmit, watch, formState:{ errors } }  = useForm()
 
-  const [value, setValue] = useState(true);
-
-
-
+  const handelForm = (e)=>{
+    console.log(e);
+  }
+  
   return (
     <div>
-     
-      <Button className={classes.myClass} variant="contained">
-        Next
-      </Button>
-      
-          
+      <form  onSubmit={ handleSubmit(handelForm) }>
+        <div>
+        <TextField {...register('email', {required:true})} multiline  label="Email Address" error={errors?.email?true:false} />
         
-        
-        
+        </div>
+        <div>
+        <TextField rows={4}  {...register('name', {required:true })} multiline label="Name" error={errors?.name?true:false} />
+        </div>
+        <Button type="submit" variant="outlined" color="primary">
+          Submit
+        </Button>
+      </form>
     </div>
   );
 };
