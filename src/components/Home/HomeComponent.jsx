@@ -5,8 +5,11 @@ import {
   CircularProgress,
   ButtonGroup,
   Container,
+  Icon,
+  Input, IconButton,
 } from "@mui/material";
 import React, { useState } from "react";
+import  { KeyboardArrowLeft, KeyboardArrowRight, UploadFile, PhotoCamera } from '@mui/icons-material'
 
 const HomeComponent = () => {
   const [value, setValue] = useState(true);
@@ -30,13 +33,26 @@ const HomeComponent = () => {
       </LoadingButton>
       <Container maxWidth="xs">
         <ButtonGroup variant="contained" color="primary">
-          <Button color="secondary" onClick={() => console.log("left")}>
-            Pre
+          <Button onClick={() => console.log("left")}>
+            <KeyboardArrowLeft fontSize="large" color="secondary" />
           </Button>
-          <Button onClick={() => console.log("right")}>Next</Button>
-          <Button onClick={() => console.log("right")}>Next</Button>
-          <Button onClick={() => console.log("right")}>Next</Button>
+          
+          <Button onClick={() => console.log("right")}>
+            <KeyboardArrowRight/>
+          </Button>
+          
         </ButtonGroup>
+        
+        <label>
+          <Input onChange={e=>{
+            const file = new FormData();
+            file.set('file', e.target.files[0]);
+            console.log(e.target.files[0])
+          }} style={{ display:"none" }} type="file" />
+          <IconButton component="span">
+            <PhotoCamera/>
+          </IconButton>
+        </label>
       </Container>
     </div>
   );
