@@ -1,7 +1,7 @@
 import { LoadingButton } from "@mui/lab";
 import {
-  Button,
-   TextField,
+  Button, Select,
+   TextField, FormControl, FormLabel, RadioGroup, FormHelperText, FormControlLabel, Radio, MenuItem,
 } from "@mui/material";
 import React, { useState } from "react";
 import  { KeyboardArrowLeft } from '@mui/icons-material'
@@ -22,15 +22,19 @@ const HomeComponent = () => {
   return (
     <div>
       <form  onSubmit={ handleSubmit(handelForm) }>
-        <div>
-        <TextField {...register('email', {required:true})} multiline  label="Email Address" error={errors?.email?true:false} />
         
-        </div>
-        <div>
-        <TextField rows={4}  {...register('name', {required:true })} multiline label="Name" error={errors?.name?true:false} />
-        </div>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Option</FormLabel>
+         <Select defaultValue='' label="age" {...register('age')}>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={1}>One</MenuItem>
+            <MenuItem value={9}>Nine</MenuItem>
+         </Select>
+          
+        </FormControl>
+
         <Button type="submit" variant="outlined" color="primary">
-          Submit
+          Submit 
         </Button>
       </form>
     </div>
