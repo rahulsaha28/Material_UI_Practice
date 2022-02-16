@@ -1,7 +1,7 @@
 import { LoadingButton } from "@mui/lab";
 import {
-  Button, Select,
-   TextField, FormControl, FormLabel, RadioGroup, FormHelperText, FormControlLabel, Radio, MenuItem,
+  Button, Select, Paper,
+   TextField, FormControl, FormLabel, RadioGroup, FormHelperText, FormControlLabel, Radio, MenuItem, Grid,
 } from "@mui/material";
 import React, { useState } from "react";
 import  { KeyboardArrowLeft } from '@mui/icons-material'
@@ -21,24 +21,22 @@ const HomeComponent = () => {
   
   return (
     <div>
-      <form  onSubmit={ handleSubmit(handelForm) }>
-        
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Option</FormLabel>
-         <Select defaultValue='' label="age" {...register('age')}>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={1}>One</MenuItem>
-            <MenuItem value={9}>Nine</MenuItem>
-         </Select>
-          
-        </FormControl>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={8} >
+            <Paper>PAPER 1</Paper>
+        </Grid>
+        <Grid item xs={12} md={2} >
+        <Paper>PAPER 2</Paper>
+        </Grid>
+        <Grid item md={2} xs={12} >
+        <Paper>PAPER 2</Paper>
+        </Grid>
+      </Grid>
 
-        <Button type="submit" variant="outlined" color="primary">
-          Submit 
-        </Button>
-      </form>
+      
     </div>
   );
 };
 
 export default HomeComponent;
+
